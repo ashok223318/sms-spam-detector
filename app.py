@@ -4,7 +4,7 @@ import streamlit as st
 
 st.set_page_config(
     page_title="SMS Spam Detector",
-    page_icon="📩",
+    page_icon=str(Path(__file__).parent / "logo.png"),
     layout="centered"
 )
 
@@ -186,10 +186,16 @@ model = load_model()
 if "message" not in st.session_state:
     st.session_state["message"] = ""
 
-st.markdown(
-    '<div class="brand">📩 SMS Spam Detector</div>',
-    unsafe_allow_html=True
-)
+logo_column, title_column = st.columns([1, 8])
+
+with logo_column:
+    st.image(str(Path(__file__).parent / "logo.png"), width=70)
+
+with title_column:
+    st.markdown(
+        '<div class="brand">SMS Spam Detector</div>',
+        unsafe_allow_html=True
+    )
 
 st.markdown("""
 <div class="hero">
